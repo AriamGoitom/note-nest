@@ -1,11 +1,15 @@
 import React from 'react';
+import { useContext } from 'react';
+import { NotesContext } from '../context/NotesContext';
 
 const Home = () => {
+
+    const { notes } = useContext(NotesContext);
 
     return (
         <main>
             <h1>Note Nest</h1>
-            <p>Your notes will be displayed here.</p>
+            <p>Total notes: {notes.length}</p>
         </main>
     );
 };
