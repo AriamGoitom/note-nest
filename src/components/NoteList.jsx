@@ -1,4 +1,5 @@
 import React from 'react';
+import NoteCard from './NoteCard';
 
 const NoteList = ({notes}) => {
 
@@ -7,10 +8,10 @@ const NoteList = ({notes}) => {
             <h2>Your notes</h2>
 
             {notes.map((note) => (
-                <article key={note.id}>
-                    <h3>{note.title}</h3>
-                    <p>{note.content}</p>
-                </article>
+                <NoteCard 
+                    key={note.id}
+                    note={note}
+                />
             ))}
         </section>
     );
