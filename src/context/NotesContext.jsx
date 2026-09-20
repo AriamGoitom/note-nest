@@ -13,8 +13,15 @@ const NotesProvider = ({ children }) => {
         localStorage.setItem("notes", JSON.stringify(notes));
     }, [notes]);
 
+    const addNote = (note) => {
+        setNotes((currentNotes) => [
+            ...currentNotes,
+            note
+        ]);
+    };
+
     return (
-        <NotesContext.Provider value={{ notes, setNotes }}>
+        <NotesContext.Provider value={{ notes, addNote }}>
             {children}
         </NotesContext.Provider>
     );
