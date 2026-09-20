@@ -1,13 +1,35 @@
 import React from 'react';
-import {useState} from 'react';
+import { useContext, useState } from 'react';
+import { NotesContext } from '../context/NotesContext';
 
 const NoteForm = () => {
+
+    const { addNote } = useContext(NotesContext);
+
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [category, setCategory] = useState('');
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        const newNote = {
+            id: Date.now(),
+            title: title,
+            content: content,
+            category: category,
+            createdAt: new Date().toISOString()
+        };
+
+        addNote(newNote);
+
+        setTitle('');
+        setContent('');
+        setCategory('');
+    };
     
     return (
-        <form>
+        <form onSubmit={handleSubmit}>
             <div>
                 <label htmlFor="title">Title</label>
                 <input
