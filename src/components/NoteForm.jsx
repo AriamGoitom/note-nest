@@ -9,9 +9,22 @@ const NoteForm = () => {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [category, setCategory] = useState('');
+    const [error, setError] = useState('');
 
     const handleSubmit = (event) => {
         event.preventDefault();
+
+        if (!title.trim()) {
+            setError('Title is required.');
+            return;
+        }
+
+        if (!content.trim()) {
+            setError('Content is required.');
+            return;
+        }
+
+        setError('');
 
         const newNote = {
             id: Date.now(),
@@ -30,6 +43,8 @@ const NoteForm = () => {
     
     return (
         <form onSubmit={handleSubmit}>
+            {error && <p>{error}</p>}
+
             <div>
                 <label htmlFor="title">Title</label>
                 <input
@@ -37,7 +52,10 @@ const NoteForm = () => {
                     type="text"
                     type="text"
                     value={title}
-                    onChange={(event) => setTitle(event.target.value)}
+                    onChange={(event) => {
+                        setTitle(event.target.value);
+                        setError('');
+                    }}
                 />
             </div>
 
@@ -46,7 +64,10 @@ const NoteForm = () => {
                 <textarea 
                     id="content"
                     value={content}
-                    onChange={(event) => setContent(event.target.value)}
+                    onChange={(event) => {
+                        setContent(event.target.value);
+                        setError('');
+                    }}
                 />
             </div>
 
