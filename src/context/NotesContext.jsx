@@ -20,8 +20,14 @@ const NotesProvider = ({ children }) => {
         ]);
     };
 
+    const deleteNote = (id) => {
+        setNotes((currentNotes) =>
+            currentNotes.filter((note) => note.id !== id)
+        );
+    };
+
     return (
-        <NotesContext.Provider value={{ notes, addNote }}>
+        <NotesContext.Provider value={{ notes, addNote, deleteNote }}>
             {children}
         </NotesContext.Provider>
     );
