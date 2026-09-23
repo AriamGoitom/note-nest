@@ -2,6 +2,7 @@ import React from 'react';
 import { useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { NotesContext } from '../context/NotesContext';
+import NoteForm from '../components/NoteForm';
 
 const EditNote = () => {
     const { id } = useParams();
@@ -14,7 +15,7 @@ const EditNote = () => {
             <h1>Edit note</h1>
 
             {note ? (
-                <p>Editing: {note.title}</p>
+                <NoteForm note={note} />
             ) : (
                 <p>Note not found</p>
             )}

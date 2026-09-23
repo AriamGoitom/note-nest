@@ -1,15 +1,23 @@
 import React from 'react';
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { NotesContext } from '../context/NotesContext';
 
-const NoteForm = () => {
+const NoteForm = ({ note }) => {
 
-    const { addNote } = useContext(NotesContext);
+    const { addNote, updateNote } = useContext(NotesContext);
 
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [category, setCategory] = useState('');
     const [error, setError] = useState('');
+
+    useEffect(() => {
+        if (note) {
+            setTitle(note.title);
+            setContent(note.content);
+            setCategory(note.category);
+        }
+    }, [note]);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -26,15 +34,26 @@ const NoteForm = () => {
 
         setError('');
 
-        const newNote = {
-            id: Date.now(),
-            title: title,
-            content: content,
-            category: category,
-            createdAt: new Date().toISOString()
-        };
+        if (note) {
+            const updatedNote = {
+                ...note,
+                title: title,
+                content: content,
+                category: category
+            };
 
-        addNote(newNote);
+            updateNote(updatedNote);
+        } else {
+            const newNote = {
+                id: Date.now(),
+                title: title,
+                content: content,
+                category: category,
+                createdAt: new Date().toISOString()
+            };
+
+            addNote(newNote);
+        }
 
         setTitle('');
         setContent('');
@@ -81,7 +100,7 @@ const NoteForm = () => {
                 />
             </div>
 
-            <button type="submit">Create note</button>
+            <button type="submit">{note ? 'Update note' : 'Create note'}</button>
         </form>
     );
 };
