@@ -1,10 +1,12 @@
 import React from 'react';
 import { useContext, useState, useEffect } from 'react';
 import { NotesContext } from '../context/NotesContext';
+import { useNavigate } from 'react-router-dom';
 
 const NoteForm = ({ note }) => {
 
     const { addNote, updateNote } = useContext(NotesContext);
+    const navigate = useNavigate();
 
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
@@ -43,6 +45,7 @@ const NoteForm = ({ note }) => {
             };
 
             updateNote(updatedNote);
+            navigate(`/note/${note.id}`);
         } else {
             const newNote = {
                 id: Date.now(),
