@@ -20,6 +20,8 @@ const NoteDetails = () => {
                     <p>{note.content}</p>
                     <p>Category: {note.category}</p>
                     <p>Created: {note.createdAt}</p>
+
+                    <Link to={`/note/${note.id}/edit`}>Edit note</Link>
                 </article>
             ) : (
                 <p>Note not found</p>

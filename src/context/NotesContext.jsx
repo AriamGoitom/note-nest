@@ -26,8 +26,16 @@ const NotesProvider = ({ children }) => {
         );
     };
 
+    const updateNote = (updatedNote) => {
+        setNotes((currentNotes) => 
+            currentNotes.map((note) =>
+                note.id === updatedNote.id ? updatedNote : note
+            )
+        );
+    };
+
     return (
-        <NotesContext.Provider value={{ notes, addNote, deleteNote }}>
+        <NotesContext.Provider value={{ notes, addNote, updateNote, deleteNote }}>
             {children}
         </NotesContext.Provider>
     );
