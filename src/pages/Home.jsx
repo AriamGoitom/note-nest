@@ -9,7 +9,8 @@ const Home = () => {
     const [searchTerm, setSearchTerm] = useState('');
 
     const filteredNotes = notes.filter((note) =>
-        note.title.toLowerCase().includes(searchTerm.toLowerCase())
+        note.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        note.content.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     return (
