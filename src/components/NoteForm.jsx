@@ -71,8 +71,6 @@ const NoteForm = ({ note }) => {
                 <label htmlFor="title">Title</label>
                 <input
                     id="title"
-                    type="text"
-                    type="text"
                     value={title}
                     onChange={(event) => {
                         setTitle(event.target.value);
@@ -95,12 +93,18 @@ const NoteForm = ({ note }) => {
 
             <div>
                 <label htmlFor="category">Category</label>
-                <input
+                <select
                     id="category"
-                    type="text"
                     value={category}
                     onChange={(event) => setCategory(event.target.value)}
-                />
+                >
+                    <option value="">Select a category</option>
+                    <option value="School">School</option>
+                    <option value="Work">Work</option>
+                    <option value="Personal">Personal</option>
+                    <option value="Ideas">Ideas</option>
+                    <option value="Other">Other</option>
+                </select>
             </div>
 
             <button type="submit">{note ? 'Update note' : 'Create note'}</button>
