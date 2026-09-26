@@ -8,6 +8,7 @@ const Home = () => {
     const { notes } = useContext(NotesContext);
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('');
+    const [sortOrder, setSortOrder] = useState('newest');
 
     const filteredNotes = notes.filter((note) => {
         const matchesSearch =
@@ -18,6 +19,17 @@ const Home = () => {
             selectedCategory === '' || note.category === selectedCategory;
 
         return matchesSearch && matchesCategory;
+    });
+
+    const sortedNotes = [...filteredNotes].sort((a, b) => {
+        const dateA = new Date(a.createdAt);
+        const dateB = new Date(b.createdAt);
+
+        if (sortOrder === 'newest') {
+            return dateB - dateA;
+        }
+
+        return dateA - dateB;
     });
 
     return (
@@ -44,8 +56,16 @@ const Home = () => {
                 <option value="Other">Other</option>
             </select>
 
+            <select
+                value={sortOrder}
+                onChange={(event) => setSortOrder(event.target.value)}
+            >
+                <option value="newest">Newest first</option>
+                <option value="oldest">Oldest first</option>
+            </select>
+
             {filteredNotes.length > 0 ? (
-                <NoteList notes={filteredNotes} />
+                <NoteList notes={sortedNotes} />
             ) : (
                 <p>No notes found</p>
             )}
