@@ -4,7 +4,7 @@ import NoteCard from './NoteCard';
 const NoteList = ({notes}) => {
 
     return (
-        <section>
+        <section className="note-list">
             <h2>Your notes</h2>
 
             {notes.map((note) => (
