@@ -298,6 +298,19 @@ main > p {
     color: #51495a;
 }
 
+.app {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.app > footer {
+    margin-top: auto;
+    padding: 25px;
+    text-align: center;
+    font-weight: 400;
+}
+
 @media (max-width: 800px) {
     .note-list article {
         flex-basis: calc((100% - 18px) / 2);

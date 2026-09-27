@@ -9,7 +9,7 @@ import './App.css'
 function App() {
 
   return (
-    <>
+    <div className="app">
       <Navigation />
 
       <Routes>
@@ -18,7 +18,11 @@ function App() {
         <Route path="/note/:id" element={<NoteDetails />} />
         <Route path="/note/:id/edit" element={<EditNote />} />
       </Routes>
-    </>
+
+      <footer>
+        <p>© 2026 Ariam Goitom. All rights reserved.</p>
+      </footer>
+    </div>
   );
 };
 
